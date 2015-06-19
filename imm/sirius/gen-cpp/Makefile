@@ -23,8 +23,6 @@ LINK_FLAGS = -L/usr/local/boost_1_58_0/stage/lib \
 
 
 all: 
-	$(CXX) -c %.cpp $(CXX_FLAGS) $(EXTRA_FLAGS) $< -o $@
-
 %.o: %.cpp
 	$(CXX) -c $(CXX_FLAGS) $(EXTRA_FLAGS) $< -o $@
 
