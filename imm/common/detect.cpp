@@ -439,10 +439,6 @@ string exec_match(string img_path, DescriptorMatcher *matcher, vector<string> *t
 			(double)totalfeat / totaltime);
 		printf(" Desc time: %.2f ms (%.2f)\n ", (double)totaldesc / 1000,
 			(double)totaldesc / totaltime);
-		/*
-		printf(" Cluster time: %.2f ms (%.2f)\n ", (double)runtimecluster / 1000,
-			(double)runtimecluster / totaltime);
-		*/
 		printf(" Search time: %.2f ms (%.2f)\n ", (double)runtimesearch / 1000,
 			(double)runtimesearch / totaltime);
 	}
@@ -452,51 +448,3 @@ string exec_match(string img_path, DescriptorMatcher *matcher, vector<string> *t
 	return trainImgs->at(bestIdx);
 }
 
-/*
-po::variables_map parse_opts(int ac, char **av) {
-  // Declare the supported options.
-  po::options_description desc("Allowed options");
-  desc.add_options()("help,h", "Produce help message")(
-      "match,m", po::value<string>(),
-      "Test Image for match in database (image)")(
-      "text,t", po::value<string>(),
-      "Detect text in image(s) (directory or image)")(
-      "database,d", po::value<string>(),
-      "Database to test for match (directory)")("build,b", po::value<string>(),
-                                                "Build database")
-
-      ("gpu,u", po::value<bool>()->default_value(false),
-       "Use GPU? Only for specific algorithms")
-
-          ("debug,v", po::value<int>()->default_value(0),
-           "Debug levels: 0: no info, 1: pipeline stages, 2: all");
-
-  po::variables_map vm;
-  po::store(po::parse_command_line(ac, av, desc), vm);
-  po::notify(vm);
-
-  if (vm.count("help")) {
-    cout << desc << "\n";
-    return vm;
-  }
-  return vm;
-}
-*/
-
-/*
-int main(int argc, char **argv) {
-  po::variables_map vm = parse_opts(argc, argv);
-
-  if (vm.count("match")) {
-    exec_match(vm);
-  } else if (vm.count("text")) {
-    exec_text(vm);
-  } else if (vm.count("build")) {
-    build_db(vm);
-  } else {
-    cout << "For help: " << argv[0] << " --help" << endl;
-  }
-
-  return 0;
-}
-*/
