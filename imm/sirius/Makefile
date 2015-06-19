@@ -36,7 +36,9 @@ OBJECTS_SERVER = $(CMDOBJECT_SERVER) \
 					IMSDaemon.o
 
 # Needed for finding header files during preprocessing
-INCLUDES_DIR = $(HOME)/sirius/sirius-application/command-center/gen-cpp
+CC_DIR = $(HOME)/sirius/sirius-application/command-center/gen-cpp
+GEN_DIR = ./gen-cpp
+COMMON_DIR = ../common/
 
 # Needed for linking
 BOOST_LOCATION = /usr/local/boost_1_58_0
@@ -51,7 +53,7 @@ $(TARGET_SERVER): $(OBJECTS_SERVER)
 	$(CXX) -I $(BOOST_LOCATION) $(OBJECTS_SERVER) -o $(TARGET_SERVER) $(BOOST_LIB) $(LINK_FLAGS)
 
 %.o: %.cpp
-	$(CXX) -I$(INCLUDES_DIR) -c $(CXX_FLAGS) $(EXTRA_FLAGS) $< -o $@
+	$(CXX) -I$(CC_DIR) -I$(GEN_DIR) -I$(COMMON_DIR) -c $(CXX_FLAGS) $(EXTRA_FLAGS) $< -o $@
 
 clean:
 	rm -rf $(TARGET_CLIENT) $(TARGET_SERVER) *.o
