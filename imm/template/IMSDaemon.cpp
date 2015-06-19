@@ -40,7 +40,6 @@ using namespace apache::thrift::concurrency;
 using namespace apache::thrift::protocol;
 using namespace apache::thrift::transport;
 using namespace apache::thrift::server;
-using namespace cmdcenterstubs;
 
 // define the constant
 #define THREAD_WORKS 16
@@ -76,18 +75,10 @@ class ImageMatchingServiceHandler : public ImageMatchingServiceIf {
 
 int main(int argc, char **argv){
 	int port = 9082;
-	//Register with the command center 
-	int cmdcenterport = 8081;
 	if (argv[1]) {
 	port = atoi(argv[1]);
 	} else {
 	std::cout << "Using default port for imm..." << std::endl;
-	}
-
-	if (argv[2]) {
-	cmdcenterport = atoi(argv[2]);
-	} else {
-	std::cout << "Using default port for cc..." << std::endl;
 	}
 
 	// initial the transport factory
