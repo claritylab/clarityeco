@@ -20,7 +20,7 @@ using namespace apache::thrift::protocol;
 using namespace apache::thrift::transport;
 
 int main(int argc, char** argv) {
-	boost::shared_ptr<TTransport> socket(new TSocket("141.212.106.71", 9090));
+	boost::shared_ptr<TTransport> socket(new TSocket("localhost", 9082));
 	boost::shared_ptr<TTransport> transport(new TBufferedTransport(socket));
 	boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
 	ImageMatchingServiceClient client(protocol);
