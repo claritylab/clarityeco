@@ -26,11 +26,13 @@ TARGET_SERVER = imserver
 CMDOBJECT_SERVER = /home/tollben/sirius/sirius-application/command-center/gen-cpp/CommandCenter.o \
                   /home/tollben/sirius/sirius-application/command-center/gen-cpp/commandcenter_types.o
 # CMDOBJECT_SERVER = CommandCenter.o commandcenter_types.o
-OBJECTS_CLIENT = ImageMatchingService.o IMSClient.o 
+OBJECTS_CLIENT = gen-cpp/ImageMatchingService.o IMSClient.o 
 OBJECTS_SERVER = $(CMDOBJECT_SERVER) ImageMatchingService.o detect.o kp_protobuf.o keypoints.pb.cc store_mat.pb.cc IMSDaemon.o
 
 # Needed for finding header files during preprocessing
-INCLUDES_DIR = /home/tollben/sirius/sirius-application/command-center/gen-cpp
+INCLUDES_DIR = /home/tollben/sirius/sirius-application/command-center/gen-cpp \
+				/gen-cpp \
+				../common/
 
 # Needed for linking
 BOOST_LOCATION = /usr/local/boost_1_58_0
