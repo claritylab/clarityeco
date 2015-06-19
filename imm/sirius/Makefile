@@ -1,4 +1,5 @@
 CXX = g++
+PROTO = protoc
 CXX_FLAGS = -I/usr/local/boost_1_58_0
 
 LINK_FLAGS = -L/usr/local/boost_1_58_0/stage/lib \
@@ -51,6 +52,9 @@ $(TARGET_CLIENT): $(OBJECTS_CLIENT)
 
 $(TARGET_SERVER): $(OBJECTS_SERVER)
 	$(CXX) -I $(BOOST_LOCATION) $(OBJECTS_SERVER) -o $(TARGET_SERVER) $(BOOST_LIB) $(LINK_FLAGS)
+
+%.o: %.proto
+	$(PROTO) --cpp_out=. $< -o $@
 
 %.o: %.cpp
 	$(CXX) -I$(CC_DIR) -I$(GEN_DIR) -I$(COMMON_DIR) -c $(CXX_FLAGS) $(EXTRA_FLAGS) $< -o $@
