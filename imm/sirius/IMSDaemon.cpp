@@ -30,7 +30,7 @@
 #include <boost/bind.hpp>
 
 // import the service headers
-#include "ImageMatchingService.h"
+#include "gen-cpp/ImageMatchingService.h"
 #include "../common/detect.h"
 //#include "~/sirius/sirius-application/command-center/gen-cpp/CommandCenter.h"
 //#include "~/sirius/sirius-application/command-center/gen-cpp/commandcenter_types.h"
