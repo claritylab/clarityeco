@@ -21,13 +21,13 @@ LINK_FLAGS = -L/usr/local/boost_1_58_0/stage/lib \
 					-ltesseract \
 					-lthrift
 
-TARGET_CLIENT = imclient 
+# TARGET_CLIENT = imclient 
 TARGET_SERVER = imserver
 
 CMDOBJECT_SERVER = $(HOME)/sirius/sirius-application/command-center/gen-cpp/CommandCenter.o \
                   $(HOME)/sirius/sirius-application/command-center/gen-cpp/commandcenter_types.o
 # CMDOBJECT_SERVER = CommandCenter.o commandcenter_types.o
-OBJECTS_CLIENT = ./gen-cpp/ImageMatchingService.o IMSClient.o 
+# OBJECTS_CLIENT = ./gen-cpp/ImageMatchingService.o IMSClient.o 
 OBJECTS_SERVER = $(CMDOBJECT_SERVER) \
 					./gen-cpp/ImageMatchingService.o \
 					../common/detect.o \
@@ -45,16 +45,15 @@ COMMON_DIR = ../common/
 BOOST_LOCATION = /usr/local/boost_1_58_0
 BOOST_LIB = -L/usr/local/lib
 
-all: $(TARGET_SERVER) $(TARGET_CLIENT)
+# need to compile proto first --> protoc <file>.proto --cpp_out=<dir>
+# all: $(TARGET_SERVER) $(TARGET_CLIENT)
+all: $(TARGET_SERVER)
 
 $(TARGET_CLIENT): $(OBJECTS_CLIENT)
 	$(CXX) -I $(BOOST_LOCATION) $(OBJECTS_CLIENT) -o $(TARGET_CLIENT) $(BOOST_LIB) $(LINK_FLAGS)
 
 $(TARGET_SERVER): $(OBJECTS_SERVER)
 	$(CXX) -I $(BOOST_LOCATION) $(OBJECTS_SERVER) -o $(TARGET_SERVER) $(BOOST_LIB) $(LINK_FLAGS)
-
-%.o: %.proto
-	$(PROTO) --cpp_out=. $< -o $@
 
 %.o: %.cpp
 	$(CXX) -I$(CC_DIR) -I$(GEN_DIR) -I$(COMMON_DIR) -c $(CXX_FLAGS) $(EXTRA_FLAGS) $< -o $@
